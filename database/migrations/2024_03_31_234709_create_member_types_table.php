@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('member_types', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('type_name');
-            $table->smallInteger('borrow_limit');
-            $table->smallInteger('borrow_day_limit');
+            $table->id();
+            $table->string('name');
+            $table->integer('borrow_limit');
+            $table->integer('borrow_day_limit');
+            $table->timestamps();
         });
     }
 

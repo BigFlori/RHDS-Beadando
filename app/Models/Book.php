@@ -9,18 +9,12 @@ class Book extends Model
 {
     use HasFactory;
 
-    protected $table = 'books';
-
     protected $fillable = [
+        'isbn',
         'title',
         'author',
         'publisher',
-        'year',
+        'publication_year',
         'edition',
     ];
-
-    public function inventory()
-    {
-        return $this->hasMany(Inventory::class, 'isbn', 'isbn');
-    }
 }

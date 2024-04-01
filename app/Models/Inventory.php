@@ -9,20 +9,8 @@ class Inventory extends Model
 {
     use HasFactory;
 
-    protected $table = 'inventory';
-
     protected $fillable = [
-        'isbn',
+        'book_id',
         'borrowable',
     ];
-
-    public function book()
-    {
-        return $this->belongsTo(Book::class, 'isbn', 'isbn');
-    }
-
-    public function borrowings()
-    {
-        return $this->hasMany(Library::class, 'inventory_number', 'inventory_number');
-    }
 }

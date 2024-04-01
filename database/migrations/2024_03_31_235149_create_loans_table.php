@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cities', function (Blueprint $table) {
-            $table->string('zip_code')->primary();
-            $table->string('name');
+        Schema::create('loans', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('member_id')->constrained('members');
+            $table->foreignId('inventory_id')->constrained('inventory');
+            $table->date('borrow_date');
+            $table->date('return_date');
             $table->timestamps();
         });
     }
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('loans');
     }
 };

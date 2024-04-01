@@ -12,18 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('members', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('zip_code');
+            $table->id();
+            $table->foreignId('type_id')->constrained('member_types');
             $table->string('name');
-            $table->string('street');
-            $table->string('house_number');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('phone_number')->nullable();
-            $table->smallInteger('member_type_id');
+            $table->string('zip_code');
+            $table->string('city');
+            $table->string('address');
             $table->timestamps();
-
-            $table->foreign('zip_code')->references('zip_code')->on('cities');
-            $table->foreign('member_type_id')->references('id')->on('member_types');
         });
     }
 

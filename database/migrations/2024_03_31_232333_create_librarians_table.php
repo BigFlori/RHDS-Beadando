@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inventories', function (Blueprint $table) {
-            $table->string('inventory_number', 20)->primary();
-            $table->string('isbn');
-            $table->boolean('borrowable');
-
-            $table->foreign('isbn')->references('isbn')->on('books');
+        Schema::create('librarians', function (Blueprint $table) {
+            $table->id();
+            $table->string('username')->unique();
+            $table->string('password');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inventories');
+        Schema::dropIfExists('librarians');
     }
 };

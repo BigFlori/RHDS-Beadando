@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class InventoryFactory extends Factory
 {
+    protected $model = \App\Models\Inventory::class;
+
+    private static $bookId = 1;
+
     /**
      * Define the model's default state.
      *
@@ -17,7 +21,7 @@ class InventoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'book_id' => $this->faker->unique()->numberBetween(1, 50),
+            'book_id' => self::$bookId++, // Increment the book ID for each new inventory record
             'borrowable' => $this->faker->boolean(),
         ];
     }

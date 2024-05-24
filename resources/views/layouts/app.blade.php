@@ -14,7 +14,8 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #21D192">
             <div class="container">
-                <a class="navbar-brand" href="/" style="color: white"><span class="pacifico-regular">RHDS</span> - Bibliothek</a>
+                <a class="navbar-brand" href="/" style="color: white"><span class="pacifico-regular">RHDS</span> -
+                    Bibliothek</a>
                 <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
                     data-mdb-target="#navbarSupportedContent" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -23,68 +24,61 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto align-items-center">
-                        @if (!Auth::check())
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
-                                    <i class="fa-solid fa-book"></i> Könyvek kezelése
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item"
-                                            href="/uj-konyv">Új könyv
-                                            felvétele</a></li>
-                                    <li><a class="dropdown-item"
-                                            href="/konyv-modositas">Könyv
-                                            módósítás</a></li>
-                                    <li><a class="dropdown-item"
-                                            href="/konyv-torles">Könyv
-                                            törlése</a></li>
-                                    <li><a class="dropdown-item"
-                                            href="/konyv-lista">Könyvek
-                                            listázása</a></li>
-                                </ul>
-                            </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
-                                    <i class="fa-solid fa-user-group"></i> Tagok kezelése
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item"
-                                            href="/uj-tag">Új
-                                            tag felvétele</a></li>
-                                    <li><a class="dropdown-item"
-                                            href="/tag-modositas">Tag
-                                            módósítása</a></li>
-                                    <li><a class="dropdown-item"
-                                            href="/tag-torles">Tag
-                                            törlése</a>
-                                    </li>
-                                    <li><a class="dropdown-item"
-                                            href="/tag-lista">Tagok
-                                            listázása</a></li>
-                                </ul>
-                            </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
+                                <i class="fa-solid fa-book"></i> Könyvek kezelése
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/uj-konyv">Új könyv
+                                        felvétele</a></li>
+                                <li><a class="dropdown-item" href="/konyv-modositas">Könyv
+                                        módósítás</a></li>
+                                <li><a class="dropdown-item" href="/konyv-torles">Könyv
+                                        törlése</a></li>
+                                <li><a class="dropdown-item" href="/konyv-lista">Könyvek
+                                        listázása</a></li>
+                            </ul>
+                        </li>
 
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
+                                <i class="fa-solid fa-user-group"></i> Tagok kezelése
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/uj-tag">Új
+                                        tag felvétele</a></li>
+                                <li><a class="dropdown-item" href="/tag-modositas">Tag
+                                        módósítása</a></li>
+                                <li><a class="dropdown-item" href="/tag-torles">Tag
+                                        törlése</a>
+                                </li>
+                                <li><a class="dropdown-item" href="/tag-lista">Tagok
+                                        listázása</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="nav-link" href="/kolcsonzes" style="color: white"><i
+                                    class="fa-solid fa-circle-down"></i> Kölcsönzés</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/visszavetel" style="color: white"><i
+                                    class="fa-solid fa-circle-up"></i> Visszavétel</a>
+                        </li>
+                        @auth
                             <li>
-                                <a class="nav-link"
-                                    href="/kolcsonzes" style="color: white"><i class="fa-solid fa-circle-down"></i> Kölcsönzés</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                <a class="btn btn-black btn-rounded" href="#" style="color: white"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="fa-solid fa-right-from-bracket"></i> Kijelentkezés
+                                </a>
                             </li>
-                            <li>
-                                <a class="nav-link"
-                                    href="/visszavetel" style="color: white"><i class="fa-solid fa-circle-up"></i> Visszavétel</a>
-                            </li>
-                            <li class="nav-item ms-3">
-                                <a class="btn btn-black btn-rounded" href="#!"
-                                    style="color: white"><i class="fa-solid fa-right-from-bracket"></i> Kijelentkezés</a>
-                            </li>
-                        @else
-                            <li class="nav-item ms-3">
-                                <a class="btn btn-black btn-rounded" href="#!"
-                                    style="color: white"><i class="fa-solid fa-right-to-bracket"></i> Bejelentkezés</a>
-                            </li>
-                        @endif
+                        @endauth
                     </ul>
                 </div>
             </div>

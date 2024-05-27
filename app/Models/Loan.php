@@ -15,4 +15,14 @@ class Loan extends Model
         'borrow_date',
         'return_date',
     ];
+
+    public function inventory()
+    {
+        return $this->belongsTo(Inventory::class);
+    }
+
+    public function member()
+    {
+        return $this->belongsTo(Member::class);
+    }
 }

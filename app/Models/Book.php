@@ -17,4 +17,15 @@ class Book extends Model
         'publication_year',
         'edition',
     ];
+
+    // Egy könyvnek több inventory-ja lehet
+    public function inventories()
+    {
+        return $this->hasMany(Inventory::class);
+    }
+
+    public function isLoaned()
+    {
+        return $this->inventories()->where('borrowable', 0)->exists();
+    }
 }

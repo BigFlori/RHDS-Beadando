@@ -10,13 +10,13 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Bejelentkezés') }}</div>
+                    <div class="card-header fw-bold">{{ __('Bejelentkezés') }}</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ route('login') }}" class="d-flex flex-column gap-2">
                             @csrf
                             <div class="form-group row">
                                 <label for="email"

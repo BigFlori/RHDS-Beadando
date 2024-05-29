@@ -25,39 +25,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto align-items-center">
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
-                                <i class="fa-solid fa-book"></i> Könyvek kezelése
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/uj-konyv">Új könyv
-                                        felvétele</a></li>
-                                <li><a class="dropdown-item" href="/konyv-modositas">Könyv
-                                        módósítás</a></li>
-                                <li><a class="dropdown-item" href="/konyv-torles">Könyv
-                                        törlése</a></li>
-                                <li><a class="dropdown-item" href="/konyv-lista">Könyvek
-                                        listázása</a></li>
-                            </ul>
+                        <li>
+                            <a class="nav-link" href="{{ route('books.index') }}" style="color: white"><i
+                                    class="fa-solid fa-circle-down"></i> Könyvek kezelése</a>
                         </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
-                                <i class="fa-solid fa-user-group"></i> Tagok kezelése
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/uj-tag">Új
-                                        tag felvétele</a></li>
-                                <li><a class="dropdown-item" href="/tag-modositas">Tag
-                                        módósítása</a></li>
-                                <li><a class="dropdown-item" href="/tag-torles">Tag
-                                        törlése</a>
-                                </li>
-                                <li><a class="dropdown-item" href="/tag-lista">Tagok
-                                        listázása</a></li>
-                            </ul>
+                        <li>
+                            <a class="nav-link" href="{{ route('members.index') }}" style="color: white"><i
+                                    class="fa-solid fa-circle-down"></i> Tagok kezelése</a>
                         </li>
 
                         <li>
@@ -154,7 +129,7 @@
                             <a href="{{ route('books.index') }}" class="text-dark">Könyvek kezelése</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-dark">Tagok kezelése</a>
+                            <a href="{{ route('members.index') }}" class="text-dark">Tagok kezelése</a>
                         </p>
                         <p>
                             <a href="#!" class="text-dark">Kölcsönzés</a>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('member_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('type_name');
             $table->integer('borrow_limit');
             $table->integer('borrow_day_limit');
             $table->timestamps();

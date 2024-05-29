@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -19,6 +20,9 @@ Route::get('/', function () {
 
 /* Books */
 Route::resource('books', BookController::class)->middleware('auth');
+
+/* Members */
+Route::resource('members', MemberController::class)->middleware('auth');
 
 Route::get('/uj-konyv', function () {
     return view('books-regi.new');

@@ -17,7 +17,7 @@ class MemberTypeFactoryTest extends TestCase
     {
         $memberType = MemberType::factory()->make();
 
-        $this->assertArrayHasKey('name', $memberType->toArray());
+        $this->assertArrayHasKey('type_name', $memberType->toArray());
         $this->assertArrayHasKey('borrow_limit', $memberType->toArray());
         $this->assertArrayHasKey('borrow_day_limit', $memberType->toArray());
 
@@ -35,7 +35,7 @@ class MemberTypeFactoryTest extends TestCase
 
         $this->assertDatabaseHas('member_types', [
             'id' => $memberType->id,
-            'name' => $memberType->name,
+            'type_name' => $memberType->name,
             'borrow_limit' => $memberType->borrow_limit,
             'borrow_day_limit' => $memberType->borrow_day_limit,
         ]);

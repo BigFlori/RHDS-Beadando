@@ -48,7 +48,7 @@ class LoanFactoryTest extends TestCase
 
         $memberType = MemberType::factory()->create();
         $member = Member::factory()->create([
-            'type_id' => $memberType->id,
+            'member_type_id' => $memberType->id,
         ]);
 
         $loan = Loan::factory()->create([
@@ -72,7 +72,7 @@ class LoanFactoryTest extends TestCase
     {
         $memberType = MemberType::factory()->create();
         $member = Member::factory()->create([
-            'type_id' => $memberType->id,
+            'member_type_id' => $memberType->id,
         ]);
 
         $book = Book::factory()->create();
@@ -96,7 +96,7 @@ class LoanFactoryTest extends TestCase
     {
         $memberType = MemberType::factory()->create();
         $member = Member::factory()->create([
-            'type_id' => $memberType->id,
+            'member_type_id' => $memberType->id,
         ]);
 
         $book = Book::factory()->create();

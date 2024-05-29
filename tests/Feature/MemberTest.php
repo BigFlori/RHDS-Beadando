@@ -18,7 +18,7 @@ class MemberFactoryTest extends TestCase
     {
         $member = Member::factory()->make();
 
-        $this->assertArrayHasKey('type_id', $member->toArray());
+        $this->assertArrayHasKey('member_type_id', $member->toArray());
         $this->assertArrayHasKey('name', $member->toArray());
         $this->assertArrayHasKey('email', $member->toArray());
         $this->assertArrayHasKey('phone_number', $member->toArray());
@@ -26,7 +26,7 @@ class MemberFactoryTest extends TestCase
         $this->assertArrayHasKey('city', $member->toArray());
         $this->assertArrayHasKey('address', $member->toArray());
 
-        $this->assertIsInt($member->type_id);
+        $this->assertIsInt($member->member_type_id);
         $this->assertIsString($member->name);
         $this->assertIsString($member->email);
         $this->assertIsString($member->phone_number);
@@ -42,12 +42,12 @@ class MemberFactoryTest extends TestCase
     {
         $memberType = MemberType::factory()->create();
         $member = Member::factory()->create([
-            'type_id' => $memberType->id,
+            'member_type_id' => $memberType->id,
         ]);
 
         $this->assertDatabaseHas('members', [
             'id' => $member->id,
-            'type_id' => $member->type_id,
+            'member_type_id' => $member->member_type_id,
             'name' => $member->name,
             'email' => $member->email,
             'phone_number' => $member->phone_number,
@@ -64,12 +64,12 @@ class MemberFactoryTest extends TestCase
     {
         $memberType1 = MemberType::factory()->create();
         $member1 = Member::factory()->create([
-            'type_id' => $memberType1->id,
+            'member_type_id' => $memberType1->id,
         ]);
 
         $memberType2 = MemberType::factory()->create();
         $member2 = Member::factory()->create([
-            'type_id' => $memberType2->id,
+            'member_type_id' => $memberType2->id,
         ]);
 
         $this->assertNotEquals($member1->email, $member2->email);

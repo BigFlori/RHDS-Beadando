@@ -17,7 +17,7 @@ class MemberFactory extends Factory
     public function definition(): array
     {
         return [
-            'type_id' => $this->faker->numberBetween(1, 4),
+            'member_type_id' => $this->faker->numberBetween(1, 4),
             'name' => $this->faker->name(),
             'email' => $this->faker->unique(maxRetries: 999999)->safeEmail(),
             'phone_number' => $this->faker->phoneNumber(),

@@ -10,8 +10,13 @@ class MemberType extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'type_name',
         'borrow_limit',
         'borrow_day_limit',
     ];
+
+    public function members()
+    {
+        return $this->hasMany(Member::class);
+    }
 }

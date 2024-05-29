@@ -27,25 +27,25 @@ class DatabaseSeeder extends Seeder
         ]);
         
         MemberType::factory()->create([
-            'name' => 'Egyetemi hallgató',
+            'type_name' => 'Egyetemi hallgató',
             'borrow_limit' => 5,
             'borrow_day_limit' => 60,
         ]);
 
         MemberType::factory()->create([
-            'name' => 'Egyetemi oktató',
+            'type_name' => 'Egyetemi oktató',
             'borrow_limit' => -1,
             'borrow_day_limit' => 365,
         ]);
 
         MemberType::factory()->create([
-            'name' => 'Külsős olvasó',
+            'type_name' => 'Külsős olvasó',
             'borrow_limit' => 4,
             'borrow_day_limit' => 30,
         ]);
 
         MemberType::factory()->create([
-            'name' => 'Egyéb',
+            'type_name' => 'Egyéb',
             'borrow_limit' => 2,
             'borrow_day_limit' => 14,
         ]);

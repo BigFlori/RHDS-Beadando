@@ -17,7 +17,7 @@ class MemberTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word(),
+            'type_name' => $this->faker->word(),
             'borrow_limit' => $this->faker->numberBetween(1, 30),
             'borrow_day_limit' => $this->faker->numberBetween(1, 10),
         ];

@@ -10,7 +10,7 @@ class Member extends Model
     use HasFactory;
 
     protected $fillable = [
-        'type_id',
+        'member_type_id',
         'name',
         'email',
         'phone_number',
@@ -18,4 +18,14 @@ class Member extends Model
         'city',
         'address',
     ];
+
+    public function memberType()
+    {
+        return $this->belongsTo(MemberType::class);
+    }
+
+    public function loans()
+    {
+        return $this->hasMany(Loan::class);
+    }
 }

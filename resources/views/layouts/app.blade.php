@@ -4,9 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RHDS - @yield('title')</title>
+    <title>@yield('title') - RHDS</title>
     <link rel="stylesheet" href="{{ asset('sass/app.scss') }}">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-autocomplete/2.3.7/bootstrap-autocomplete.css"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-autocomplete/2.3.7/bootstrap-autocomplete.min.js">
+    </script>
 </head>
 
 <body class="d-flex flex-column" style="min-height: 100vh">
@@ -27,17 +31,21 @@
 
                         <li>
                             <a class="nav-link" href="{{ route('books.index') }}" style="color: white"><i
-                                    class="fa-solid fa-circle-down"></i> Könyvek kezelése</a>
+                                    class="fa-solid fa-book"></i> Könyvek kezelése</a>
                         </li>
 
                         <li>
                             <a class="nav-link" href="{{ route('members.index') }}" style="color: white"><i
-                                    class="fa-solid fa-circle-down"></i> Tagok kezelése</a>
+                                    class="fa-solid fa-user-group"></i> Tagok kezelése</a>
                         </li>
 
                         <li>
-                            <a class="nav-link" href="/kolcsonzes" style="color: white"><i
-                                    class="fa-solid fa-circle-down"></i> Kölcsönzés</a>
+                            <a class="nav-link" href="{{ route('loans.index') }}" style="color: white"><i
+                                    class="fa-solid fa-list"></i> Kölcsönzések</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{ route('loans.create') }}" style="color: white"><i
+                                class="fa-solid fa-circle-down"></i> Kölcsönzés</a>
                         </li>
                         <li>
                             <a class="nav-link" href="/visszavetel" style="color: white"><i
@@ -132,7 +140,7 @@
                             <a href="{{ route('members.index') }}" class="text-dark">Tagok kezelése</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-dark">Kölcsönzés</a>
+                            <a href="{{ route('loans.index') }}" class="text-dark">Kölcsönzések</a>
                         </p>
                         <p>
                             <a href="#!" class="text-dark">Visszavétel</a>
@@ -204,6 +212,8 @@
             $('.toast').toast('show');
         });
     </script>
+
+    @yield('scripts')
 </body>
 
 </html>

@@ -2,6 +2,10 @@
 
 @extends('layouts.app')
 
+@section('title')
+    Könyvek
+@endsection
+
 @section('content')
     <div class="container">
         <h1>Könyvek</h1>
@@ -47,7 +51,8 @@
                         </td>
                         <td>
                             <div class="d-flex gap-2">
-                                <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning btn-sm">Szerkesztés</a>
+                                <a href="{{ route('books.edit', $book->id) }}"
+                                    class="btn btn-warning btn-sm">Szerkesztés</a>
                                 <form action="{{ route('books.destroy', $book->id) }}" method="POST"
                                     style="display:inline;">
                                     @csrf

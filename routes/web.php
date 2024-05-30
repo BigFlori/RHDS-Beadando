@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\LoanController;
 use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
@@ -23,6 +25,9 @@ Route::resource('books', BookController::class)->middleware('auth');
 
 /* Members */
 Route::resource('members', MemberController::class)->middleware('auth');
+
+/* Loans */
+Route::resource('loans', LoanController::class)->middleware('auth');
 
 Route::get('/uj-konyv', function () {
     return view('books-regi.new');

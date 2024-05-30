@@ -26,6 +26,6 @@ class Book extends Model
 
     public function isLoaned()
     {
-        return $this->inventories()->where('borrowable', 0)->exists();
+        return $this->inventories()->where('borrowable', 1)->exists();
     }
 }

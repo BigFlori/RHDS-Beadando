@@ -13,11 +13,22 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    @foreach (['id', 'author', 'title', 'publisher', 'publication_year', 'edition', 'isbn'] as $column)
+                    @php
+                        $columnNames = [
+                            'id' => '#',
+                            'author' => 'Szerző',
+                            'title' => 'Cím',
+                            'publisher' => 'Kiadó',
+                            'publication_year' => 'Kiadás éve',
+                            'edition' => 'Kiadás',
+                            'isbn' => 'ISBN',
+                        ];
+                    @endphp
+                    @foreach ($columnNames as $column => $name)
                         <th>
                             <a class="d-flex gap-1 text-decoration-none text-dark justify-content-center align-items-center"
                                 href="{{ route('books.index', ['sort' => $column, 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
-                                {{ ucfirst(str_replace('_', ' ', $column)) }}
+                                {{ $name }}
                                 @if ($sortColumn === $column)
                                     @if ($sortDirection === 'asc')
                                         <i class="fa-solid fa-arrow-down"></i>
@@ -58,7 +69,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"
-                                        {{ $book->isLoaned() ? 'disabled' : '' }}>Törlés</button>
+                                        {{ $book->isLoaned() ? '' : 'disabled' }}>Törlés</button>
                                 </form>
                             </div>
                         </td>

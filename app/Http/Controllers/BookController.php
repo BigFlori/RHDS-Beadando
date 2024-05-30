@@ -85,7 +85,7 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
 
-        if ($book->isLoaned()) {
+        if (!$book->isLoaned()) {
             return redirect()->route('books.index')->with('error', 'A könyv nem törölhető, mert ki van kölcsönözve.');
         }
 

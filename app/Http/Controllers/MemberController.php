@@ -93,15 +93,19 @@ class MemberController extends Controller
 
     public function destroy($id)
     {
-        $member = Member::findOrFail($id);
+        $member = Member::find($id);
 
-        // Töröljük a kapcsolódó loan rekordokat
-        foreach ($member->loans as $loan) {
-            $loan->delete();
+        if (!$member) {
+            return redirect()->route('members.index')->with('error', 'Tag nem található.');
+        }
+
+        // Check if the member has any active loans
+        if ($member->loans()->count() > 0) {
+            return redirect()->route('members.index')->with('error', 'Tag nem törölhető mert van aktív kölcsönzése.');
         }
 
         $member->delete();
 
-        return redirect()->route('members.index')->with('success', 'Tag törölve lett.');
+        return redirect()->route('members.index')->with('success', 'Tag sikeresen törölve.');
     }
 }

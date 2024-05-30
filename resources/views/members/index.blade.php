@@ -8,11 +8,19 @@
         <table class="table table-striped mt-4">
             <thead>
                 <tr>
-                    @foreach (['name', 'email', 'member_type_id', 'created_at'] as $column)
+                    @php
+                        $columnNames = [
+                            'name' => 'Név',
+                            'email' => 'Email',
+                            'member_type_id' => 'Tag típusa',
+                            'created_at' => 'Létrehozás dátuma',
+                        ];
+                    @endphp
+                    @foreach ($columnNames as $column => $name)
                         <th>
                             <a class="d-flex gap-1 text-decoration-none text-dark justify-content-center align-items-center"
                                 href="{{ route('members.index', ['sort' => $column, 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
-                                {{ ucfirst(str_replace('_', ' ', $column)) }}
+                                {{ $name }}
                                 @if ($sortColumn === $column)
                                     @if ($sortDirection === 'asc')
                                         <i class="fa-solid fa-arrow-down"></i>
@@ -35,7 +43,8 @@
                         <td>{{ $member->created_at->format('Y. m. d. H:i') }}</td>
                         <td>
                             <div class="d-flex gap-2">
-                                <a href="{{ route('members.edit', $member->id) }}" class="btn btn-warning btn-sm">Szerkesztés</a>
+                                <a href="{{ route('members.edit', $member->id) }}"
+                                    class="btn btn-warning btn-sm">Szerkesztés</a>
                                 <form action="{{ route('members.destroy', $member->id) }}" method="POST"
                                     style="display:inline;">
                                     @csrf

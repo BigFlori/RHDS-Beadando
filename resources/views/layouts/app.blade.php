@@ -45,11 +45,7 @@
                         </li>
                         <li>
                             <a class="nav-link" href="{{ route('loans.create') }}" style="color: white"><i
-                                class="fa-solid fa-circle-down"></i> Kölcsönzés</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="/visszavetel" style="color: white"><i
-                                    class="fa-solid fa-circle-up"></i> Visszavétel</a>
+                                    class="fa-solid fa-circle-down"></i> Kölcsönzés</a>
                         </li>
                         @auth
                             <li>

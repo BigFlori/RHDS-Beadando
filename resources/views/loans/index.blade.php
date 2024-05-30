@@ -1,21 +1,30 @@
 @extends('layouts.app')
 
 @section('title')
-Kölcsönzések
+    Kölcsönzések
 @endsection
 
 @section('content')
     <div class="container">
-        <h1>Loans</h1>
-        <a href="{{ route('loans.create') }}" class="btn btn-primary">Create Loan</a>
+        <h1>Kölcsönzések</h1>
+        <a href="{{ route('loans.create') }}" class="btn btn-primary">Kölcsönzés létrehozása</a>
         <table class="table mt-4">
             <thead>
                 <tr>
-                    @foreach (['id', 'member_id', 'inventory_id', 'borrow_date', 'return_date'] as $column)
+                    @php
+                        $columnNames = [
+                            'id' => '#',
+                            'member_id' => 'Tag neve',
+                            'inventory_id' => 'Könyv címe',
+                            'borrow_date' => 'Kölcsönzés dátuma',
+                            'return_date' => 'Visszahozatal dátuma',
+                        ];
+                    @endphp
+                    @foreach ($columnNames as $column => $name)
                         <th>
                             <a class="d-flex gap-1 text-decoration-none text-dark justify-content-center align-items-center"
                                 href="{{ route('loans.index', ['sort' => $column, 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
-                                {{ ucfirst(str_replace('_', ' ', $column)) }}
+                                {{ $name }}
                                 @if ($sortColumn === $column)
                                     @if ($sortDirection === 'asc')
                                         <i class="fa-solid fa-arrow-down"></i>
@@ -26,24 +35,25 @@ Kölcsönzések
                             </a>
                         </th>
                     @endforeach
-                    <th>Returned</th>
+                    <th>Visszahozatal</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($loans as $loan)
                     @php
                         $returnDate = $loan->return_date ? Carbon\Carbon::parse($loan->return_date) : null;
-                        $isOverdue = $returnDate && $returnDate->addDays(3)->isPast();
+                        $isOverdue = $returnDate && $returnDate->isPast();
                     @endphp
-                    <tr class="{{ $isOverdue ? 'bg-light-red' : '' }}">
+                    <tr>
                         <td>{{ $loan->id }}</td>
                         <td>{{ $loan->member->name }}</td>
                         <td>{{ $loan->inventory->book->title }}</td>
                         <td>{{ $loan->borrow_date }}</td>
-                        <td>{{ $loan->return_date ?? 'N/A' }}</td>
+                        <td class="{{ $isOverdue ? 'fw-bold' : '' }}" style="color: {{ $isOverdue ? 'red' : '' }};">
+                            {{ $loan->return_date ?? 'N/A' }}</td>
                         <td>
                             <button class="btn btn-success btn-sm"
-                                onclick="confirmReturn({{ $loan->id }})">Returned</button>
+                                onclick="confirmReturn({{ $loan->id }})">Visszavétel</button>
                         </td>
                     </tr>
                 @endforeach
@@ -63,7 +73,7 @@ Kölcsönzések
 @section('scripts')
     <script>
         function confirmReturn(loanId) {
-            if (confirm('Was the book really returned?')) {
+            if (confirm('Biztosan visszahozták a könyvet?')) {
                 var form = document.getElementById('return-form');
                 form.action = '/loans/' + loanId;
                 form.submit();
